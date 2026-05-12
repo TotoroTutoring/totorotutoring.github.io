@@ -410,3 +410,71 @@ window.addEventListener('scroll', () => {
         backToTopButton.style.visibility = 'hidden';
     }
 }); 
+
+// Lesson plan modal
+const lessonData = {
+    intro: {
+        title: 'Intro Lesson',
+        subtitle: 'A taster session to get you started',
+        lessons: [
+            { name: 'Getting to know you & your goals',  duration: '~10 min' },
+            { name: 'Setting up VsCode + Python Introduction', duration: '~20 min' },
+        ]
+    },
+    tutoring: {
+        title: 'Python Tutoring',
+        subtitle: 'Ongoing lessons tailored to your level',
+        lessons: [
+            { name: 'Python basics – variables, types & loops', duration: '~20 minutes' },
+            { name: 'Basic operators, data types, type conversion', duration: '~30 minutes' },
+            { name: 'Project: Making a simple calculator (user input, control flow, basic loops)', duration: '~1 hour' },
+            { name: 'Advanced operators - modulo, floor division, exponents, syntax sugar, more control flow and PEP-8 code styling', duration: '~1 - 1.5 hour(s)' },
+            { name: 'Format strings, lists, \'for\' loops, functions, scope, and best coding practices', duration: '~1 hour' },
+            { name: 'Advanced functions, default parameters, keyword arguments, lambda functions, dictionaries', duration: '~1 - 1.5 hour(s)' },
+            { name: 'Modules and virtual environments - "import" and "from" keywords, aliases, "pip" command, usage and benefits of virtual environments', duration: '~1.5 - 2.5 hours' },
+            { name: 'Practice - Several small projects to build experience', duration: '~30 - 60 minutes' },
+            { name: 'Files - opening, reading, writing, path manipulation', duration: '~30 minutes' },
+            { name: 'Error handling and exceptions, understanding tracebacks, "try", "except", raising exceptions, "finally" block', duration: '~45 minutes'},
+            { name: 'Sets, creating, adding / removing items, set operations and methods, iterating a set', duration: '~1 hour' },
+            { name: 'Comprehensions, list comprehension, dictionary comprehension, set comprehension, using lambda in comprehensions', duration: '~45 minutes - 2 hours' },
+            { name: 'Object-oriented programming, classes and objects, attributes and methods, inheritance, encapsulation, polymorphism', duration: '~2 - 3 hours' },
+            { name: "Iterators and generators, creating iterators with __iter__ and __next__, generator functions with yield, generator expressions", duration: "~1 hour" },
+            { name: 'Decorators and logging, understanding functions as first-class objects, creating and using decorators, "logging" module and how to use it', duration: '~1 hour' },
+            { name: 'Common data formats and common use cases, reading and writing each format', duration: '~30 - 60 minutes' },
+            { name: 'Custom Exceptions, type annotation, docstrings', duration: '~45 minutes' },
+            { name: 'Unit testing, importance of testing, writing tests with the "unittest" framework, best practices for testing', duration: '~30 - 60 minutes' },
+            { name: 'Final project - A text-based procedurally generated dungeon crawler', duration: 'Several hours' },
+            
+        ]   
+    }
+};
+
+const modal   = document.getElementById('lesson-modal');
+const modalClose = document.getElementById('modal-close');
+
+document.querySelectorAll('.service-card').forEach(card => {
+    card.addEventListener('click', () => {
+        const key  = card.dataset.service;
+        const data = lessonData[key];
+        if (!data) return;
+
+        document.getElementById('modal-title').textContent    = data.title;
+        document.getElementById('modal-subtitle').textContent = data.subtitle;
+
+        const list = document.getElementById('lesson-list');
+        list.innerHTML = data.lessons.map(l => `
+            <li>
+                <span class="lesson-name">${l.name}</span>
+                <span class="lesson-duration">${l.duration}</span>
+            </li>
+        `).join('');
+
+        modal.style.display = 'flex';
+    });
+});
+
+function closeModal() { modal.style.display = 'none'; }
+
+modalClose.addEventListener('click', closeModal);
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
