@@ -35,6 +35,9 @@
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
+                <div class="hero-logo">
+                    <img src="totoro.png" alt="Totoro">
+                </div>
                 <h1 style="min-height: 8.4rem;">Master Python Programming</h1>
                 <p class="hero-subtitle">Professional one-on-one online Python tutoring tailored to your learning style and goals</p>
                 <div class="hero-buttons">
@@ -85,7 +88,7 @@
                     <div class="certifications" style="margin-top: 3rem; padding-top: 0;">
                         <h3 style="margin-top: 0; margin-bottom: 1rem;">My Background</h3>
                         <ul>
-                            <li><i class="fas fa-code"></i> 6 years of programming experience</li>
+                            <li><i class="fas fa-code"></i> 6 years of development experience</li>
                             <li><i class="fas fa-python"></i> Expert in Python development</li>
                         </ul>
                     </div>
@@ -103,7 +106,7 @@
             </div>
             
             <div class="services-grid">
-                <a href="#contact" class="service-card">
+                <div class="service-card" data-service="intro">
                     <div class="service-icon">
                         <i class="fas fa-star"></i>
                     </div>
@@ -114,24 +117,28 @@
                         <li>Assessment of Your Level</li>
                         <li>No Long-Term Commitment</li>
                     </ul>
+                    <p class="card-hint">Click here for more details</p>
                     <p class="requirement">Requires: Zoom & Visual Studio Code</p>
                     <div class="service-price">FREE</div>
-                </a>
+                </div>
 
-                <a href="#contact" class="service-card">
+                <div class="service-card" data-service="tutoring">
                     <div class="service-icon">
                         <i class="fab fa-python"></i>
                     </div>
                     <h3>Python Tutoring</h3>
                     <p>Comprehensive Python lessons tailored to your skill level, from complete beginner to advanced Python development.</p>
+                    <p>Follow a course, or take tutoring for help with a project or general improvement.</p>
+                    <p>Students who follow the course will finish having made a small game.</p>
                     <ul>
                         <li>Python Fundamentals & Syntax</li>
                         <li>Object-Oriented Programming</li>
                         <li>Best Practices for writing pythonic code</li>
                     </ul>
+                    <p class="card-hint">Click here for a summary of the course</p>
                     <p class="requirement">Requires: Zoom & Visual Studio Code</p>
                     <div class="service-price">$30/hour</div>
-                 </a>
+                </div>
             </div>
         </div>
     </section>
@@ -195,6 +202,16 @@
             </div>
         </div>
     </footer>
+
+    <!-- Lesson Plan Modal -->
+    <div id="lesson-modal" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h2 id="modal-title"></h2>
+            <p id="modal-subtitle" class="modal-subtitle"></p>
+            <ul class="lesson-list" id="lesson-list"></ul>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
